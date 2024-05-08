@@ -224,10 +224,11 @@ const displayContactName = (res, contact) => {
 
 app.get('/', async (req, res) => {
   res.setHeader('Content-Type', 'text/html');
-  res.write(`<h2>HubSpot OAuth 2.0 Quickstart App</h2>`);
+  res.write(`<h1>HubSpot OAuth 2.0 Quickstart App</h1>`);
   if (isAuthorized(req.sessionID)) {
     const accessToken = await getAccessToken(req.sessionID);
     const contact = await getContact(accessToken);
+    res.write(`<h2>Congratulations, you've installed the app</h2>`);
     res.write(`<h4>Access token: ${accessToken}</h4>`);
     displayContactName(res, contact);
   } else {
